@@ -18,7 +18,7 @@ Run the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:5173/](http://localhost:5173/) to view it in the browser.
 
 ## Build for Production
 
