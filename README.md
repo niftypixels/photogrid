@@ -6,7 +6,7 @@ Generate a photography portfolio website with a responsive image gallery.
 Clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/john-doe/photogrid.git
+git clone https://github.com/niftypixels/photogrid.git
 cd photogrid
 npm install
 ```
