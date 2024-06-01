@@ -26,9 +26,8 @@ Open [http://localhost:5173/](http://localhost:5173/) to view it in the browser.
 npm run build
 ```
 
-The build is minified into the dist/ folder.
+The build is minified into the `dist/` directory.
 
+Upload the contents of `dist/` to your web server.
 
-## Deployment
-Upload the contents of the dist/ folder to your web server.
 
