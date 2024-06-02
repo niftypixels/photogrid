@@ -2,6 +2,20 @@ import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 
+function deleteDirectory(dir) {
+  if (fs.existsSync(dir)) {
+    fs.readdirSync(dir).forEach((file) => {
+      const curPath = path.join(dir, file);
+      if (fs.lstatSync(curPath).isDirectory()) {
+        deleteDirectory(curPath);
+      } else {
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(dir);
+  }
+}
+
 async function processPhotos(directory) {
   try {
     const files = fs.readdirSync(directory);
@@ -10,6 +24,8 @@ async function processPhotos(directory) {
 
     const parentDirectory = path.resolve(directory, '..');
     const thumbnailDirectory = path.join(parentDirectory, 'thumbs');
+
+    deleteDirectory(thumbnailDirectory);
 
     if (!fs.existsSync(thumbnailDirectory)) {
       fs.mkdirSync(thumbnailDirectory);
