@@ -16,6 +16,9 @@ async function processPhotos(directory) {
     }
 
     for (const file of files) {
+      // ignore .gitkeep
+      if (file === '.gitkeep') continue;
+
       const filePath = path.join(directory, file);
       const thumbnailPath = path.join(thumbnailDirectory, file);      
       const { width, height } = await sharp(filePath).metadata();
