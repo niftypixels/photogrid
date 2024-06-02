@@ -16,8 +16,7 @@ async function processPhotos(directory) {
     }
 
     for (const file of files) {
-      // ignore .gitkeep
-      if (file === '.gitkeep') continue;
+      if (file === '.gitkeep') continue; // ignore .gitkeep
 
       const filePath = path.join(directory, file);
       const thumbnailPath = path.join(thumbnailDirectory, file);      
