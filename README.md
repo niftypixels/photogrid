@@ -12,6 +12,13 @@ npm install
 ```
 
 ## Usage
+Add images to `public/photos/` and run the darkroom command to generate thumbnails and the gallery manifest: 
+
+```bash
+npm run darkroom
+```
+
+
 Run the development server:
 
 ```bash
