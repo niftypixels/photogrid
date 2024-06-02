@@ -26,7 +26,7 @@ async function processPhotos(directory) {
       
       thumbs.push({
         src: `/${path.relative(parentDirectory, thumbnailPath)}`,
-        width: thumbnailHeight * aspectRatio,
+        width: Math.floor(thumbnailHeight * aspectRatio),
         height: thumbnailHeight,
       });
 
