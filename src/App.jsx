@@ -1,17 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import PhotoAlbum from 'react-photo-album' 
 import Lightbox from 'yet-another-react-lightbox'
 
-import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen'
-import Slideshow from 'yet-another-react-lightbox/plugins/slideshow'
-import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
-import Zoom from 'yet-another-react-lightbox/plugins/zoom'
-
 import 'yet-another-react-lightbox/plugins/thumbnails.css'
 import 'yet-another-react-lightbox/styles.css'
-
-import photos from './photos'
 
 function App() {
   const {
@@ -21,6 +14,14 @@ function App() {
   } = import.meta.env
 
   const [index, setIndex] = useState(-1)
+  const [gallery, setGallery] = useState(0);
+
+  useEffect(() => {
+    fetch('/gallery.json')
+      .then(response => response.json())
+      .then(data => setGallery(data))
+      .catch(error => console.error('Unable to fetch gallery.json:', error));
+  }, [])
 
   return (
     <>
@@ -28,18 +29,16 @@ function App() {
       <p className="copy">{copy}</p>
       <br />
       <PhotoAlbum
-        photos={photos}
+        photos={gallery.thumbs}
         layout="rows"
         targetRowHeight={150}
         onClick={({ index }) => setIndex(index)}
       />
       <Lightbox
-        slides={photos}
+        slides={gallery.photos}
         open={index >= 0}
         index={index}
         close={() => setIndex(-1)}
-        // enable optional lightbox plugins
-        plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
       />
       <footer>&copy; {(new Date().getFullYear())} &nbsp; {footer}</footer>
     </>
