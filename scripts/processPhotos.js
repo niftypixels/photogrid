@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function deleteDirectory(dir) {
   if (fs.existsSync(dir)) {
@@ -38,7 +41,7 @@ async function processPhotos(directory) {
       const thumbnailPath = path.join(thumbnailDirectory, file);      
       const { width, height } = await sharp(filePath).metadata();
       const aspectRatio = width / height;
-      const thumbnailHeight = 165;
+      const thumbnailHeight = 1.1 * process.env.VITE_ROW_HEIGHT;
 
       await sharp(filePath).resize({ height: thumbnailHeight }).toFile(thumbnailPath);
       

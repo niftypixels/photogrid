@@ -7,7 +7,8 @@ function App() {
   const {
     VITE_TITLE: title,
     VITE_PAGE_COPY: copy,
-    VITE_PAGE_FOOTER: footer
+    VITE_PAGE_FOOTER: footer,
+    VITE_ROW_HEIGHT: rowHeight
   } = import.meta.env
 
   const [index, setIndex] = useState(-1)
@@ -28,7 +29,7 @@ function App() {
       <PhotoAlbum
         photos={gallery.thumbs}
         layout="rows"
-        targetRowHeight={150}
+        targetRowHeight={rowHeight}
         onClick={({ index }) => setIndex(index)}
       />
       <Lightbox
