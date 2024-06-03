@@ -68,7 +68,7 @@ async function processPhotos(directory) {
 
     fs.writeFileSync(
       path.join(parentDirectory, 'gallery.json'),
-      JSON.stringify({ photos, thumbs }, null, 1),
+      JSON.stringify({ photos, thumbs }, null, 0),
     );
 
     console.log(`Processed ${photos.length} photos`);
