@@ -56,7 +56,7 @@ async function processPhotos(directory) {
 
       photos.push({
         title: `Title for ${fileName}`,
-        description: `Description for ${fileName}`,
+        description: `Description of ${fileName}`,
         src: `/${path.relative(parentDirectory, filePath)}`,
         width,
         height,

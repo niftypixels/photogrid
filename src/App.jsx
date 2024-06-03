@@ -38,7 +38,7 @@ function App() {
         slides={gallery.photos}
         captions={{
           descriptionTextAlign: 'center',
-          // showToggle: true,
+          showToggle: true,
         }}
         open={index >= 0}
         index={index}
