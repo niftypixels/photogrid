@@ -37,6 +37,7 @@ async function processPhotos(directory) {
     for (const file of files) {
       if (file === '.gitkeep') continue; // ignore .gitkeep
 
+      const fileName = path.parse(file).name;
       const filePath = path.join(directory, file);
       const thumbnailPath = path.join(thumbnailDirectory, file);      
       const { width, height } = await sharp(filePath).metadata();
@@ -46,12 +47,16 @@ async function processPhotos(directory) {
       await sharp(filePath).resize({ height: thumbnailHeight }).toFile(thumbnailPath);
       
       thumbs.push({
+        alt: fileName,
+        title: `Title for ${fileName}`,
         src: `/${path.relative(parentDirectory, thumbnailPath)}`,
         width: Math.floor(thumbnailHeight * aspectRatio),
         height: thumbnailHeight,
       });
 
       photos.push({
+        title: `Title for ${fileName}`,
+        description: `Description for ${fileName}`,
         src: `/${path.relative(parentDirectory, filePath)}`,
         width,
         height,
@@ -60,7 +65,7 @@ async function processPhotos(directory) {
 
     fs.writeFileSync(
       path.join(parentDirectory, 'gallery.json'),
-      JSON.stringify({ thumbs, photos }, null, 1),
+      JSON.stringify({ photos, thumbs }, null, 1),
     );
 
     console.log(`Processed ${photos.length} photos`);

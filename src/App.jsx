@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
-import PhotoAlbum from 'react-photo-album' 
+import PhotoAlbum from 'react-photo-album'
 import Lightbox from 'yet-another-react-lightbox'
+import { Captions } from 'yet-another-react-lightbox/plugins'
+import 'yet-another-react-lightbox/plugins/captions.css'
 import 'yet-another-react-lightbox/styles.css'
 
 function App() {
@@ -34,9 +36,14 @@ function App() {
       />
       <Lightbox
         slides={gallery.photos}
+        captions={{
+          descriptionTextAlign: 'center',
+          // showToggle: true,
+        }}
         open={index >= 0}
         index={index}
         close={() => setIndex(-1)}
+        plugins={[Captions]}
       />
       <footer>&copy; {(new Date().getFullYear())} &nbsp; {footer}</footer>
     </>
