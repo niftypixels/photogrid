@@ -10,6 +10,7 @@ lerna-debug.log*
 public/photos
 public/thumbs
 public/gallery.json
+public/metadata.json
 node_modules
 dist
 dist-ssr

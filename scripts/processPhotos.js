@@ -21,12 +21,17 @@ function deleteDirectory(dir) {
 
 async function processPhotos(directory) {
   try {
-    const files = fs.readdirSync(directory);
+    const files = fs.readdirSync(directory).filter(f => f !== '.gitkeep');
+    const parentDirectory = path.resolve(directory, '..');
+    const metadataPath = path.join(parentDirectory, 'metadata.json');
+    const thumbnailDirectory = path.join(parentDirectory, 'thumbs');
     const photos = [];
     const thumbs = [];
+    let metadata = {};
 
-    const parentDirectory = path.resolve(directory, '..');
-    const thumbnailDirectory = path.join(parentDirectory, 'thumbs');
+    if (fs.existsSync(metadataPath)) {
+      metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
+    }
 
     deleteDirectory(thumbnailDirectory);
 
@@ -35,28 +40,26 @@ async function processPhotos(directory) {
     }
 
     for (const file of files) {
-      if (file === '.gitkeep') continue; // ignore .gitkeep
-
-      const fileName = path.parse(file).name;
       const filePath = path.join(directory, file);
       const thumbnailPath = path.join(thumbnailDirectory, file);      
       const { width, height } = await sharp(filePath).metadata();
       const aspectRatio = width / height;
       const thumbnailHeight = 1.1 * process.env.VITE_ROW_HEIGHT;
+      const { title = '', description = '' } = metadata[file] || {};
 
       await sharp(filePath).resize({ height: thumbnailHeight }).toFile(thumbnailPath);
       
       thumbs.push({
-        alt: fileName,
-        title: `Title for ${fileName}`,
+        alt: path.parse(file).name,
+        title,
         src: `/${path.relative(parentDirectory, thumbnailPath)}`,
         width: Math.floor(thumbnailHeight * aspectRatio),
         height: thumbnailHeight,
       });
 
       photos.push({
-        title: `Title for ${fileName}`,
-        description: `Description of ${fileName}`,
+        title,
+        description,
         src: `/${path.relative(parentDirectory, filePath)}`,
         width,
         height,
