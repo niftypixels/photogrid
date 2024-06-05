@@ -23,10 +23,11 @@ async function processPhotos(directory) {
   try {
     const files = fs.readdirSync(directory).filter(f => f !== '.gitkeep');
     const parentDirectory = path.resolve(directory, '..');
-    const metadataPath = path.join(parentDirectory, 'metadata.json');
     const thumbnailDirectory = path.join(parentDirectory, 'thumbs');
     const photos = [];
     const thumbs = [];
+
+    const metadataPath = path.join(parentDirectory, 'metadata.json');
     let metadata = {};
 
     if (fs.existsSync(metadataPath)) {
@@ -67,7 +68,7 @@ async function processPhotos(directory) {
     }
 
     fs.writeFileSync(
-      path.join(parentDirectory, 'gallery.json'),
+      path.join(parentDirectory, '../src/assets', 'gallery.json'),
       JSON.stringify({ photos, thumbs }, null, 0),
     );
 

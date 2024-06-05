@@ -4,6 +4,7 @@ import Lightbox from 'yet-another-react-lightbox'
 import { Captions } from 'yet-another-react-lightbox/plugins'
 import 'yet-another-react-lightbox/plugins/captions.css'
 import 'yet-another-react-lightbox/styles.css'
+import gallery from './assets/gallery.json';
 
 function App() {
   const {
@@ -14,14 +15,6 @@ function App() {
   } = import.meta.env
 
   const [index, setIndex] = useState(-1)
-  const [gallery, setGallery] = useState(0);
-
-  useEffect(() => {
-    fetch('/gallery.json')
-      .then(response => response.json())
-      .then(data => setGallery(data))
-      .catch(error => console.error('Unable to fetch gallery.json:', error));
-  }, [])
 
   return (
     <>
