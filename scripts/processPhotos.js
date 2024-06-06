@@ -42,19 +42,20 @@ async function processPhotos(directory) {
 
     for (const file of files) {
       const filePath = path.join(directory, file);
-      const thumbnailPath = path.join(thumbnailDirectory, file);      
       const { width, height } = await sharp(filePath).metadata();
+      const { title = '', description = '' } = metadata[file] || {};
       const aspectRatio = width / height;
       const thumbnailHeight = 1.1 * process.env.VITE_ROW_HEIGHT;
-      const { title = '', description = '' } = metadata[file] || {};
+      const thumbnailWidth = Math.floor(thumbnailHeight * aspectRatio);
+      const thumbnailPath = path.join(thumbnailDirectory, file);
 
       await sharp(filePath).resize({ height: thumbnailHeight }).toFile(thumbnailPath);
-      
+
       thumbs.push({
         alt: path.parse(file).name,
         title,
         src: `/${path.relative(parentDirectory, thumbnailPath)}`,
-        width: Math.floor(thumbnailHeight * aspectRatio),
+        width: thumbnailWidth,
         height: thumbnailHeight,
       });
 
