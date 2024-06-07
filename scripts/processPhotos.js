@@ -45,7 +45,7 @@ async function processPhotos(directory) {
       const { width, height } = await sharp(filePath).metadata();
       const { title = '', description = '' } = metadata[file] || {};
       const aspectRatio = width / height;
-      const thumbnailHeight = 1.1 * process.env.VITE_ROW_HEIGHT;
+      const thumbnailHeight = Math.floor(1.1 * process.env.VITE_ROW_HEIGHT);
       const thumbnailWidth = Math.floor(thumbnailHeight * aspectRatio);
       const thumbnailPath = path.join(thumbnailDirectory, file);
 

@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "darkroom": "node scripts/metadata.js && node scripts/processPhotos.js",
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "npm run darkroom && vite",
+    "build": "npm run darkroom && vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
