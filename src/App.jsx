@@ -42,7 +42,7 @@ function App() {
     <>
       <div id='scrim'></div>
       <header>
-        <img width="250" src={logo} alt={logoText} title={logoText} />
+        <img width="250" src={logo} alt={logoText} />
         <a href={`tel:${phone}`}>{phone}</a>
       </header>
       <h1>{title}</h1>
