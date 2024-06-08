@@ -34,6 +34,8 @@ function App() {
       }
     };
 
+    document.addEventListener('contextmenu', (e) => { e.preventDefault(); });
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, []);
