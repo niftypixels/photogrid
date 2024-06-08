@@ -33,7 +33,7 @@ body {
 #scrim {
   background-color: rgba(0, 0, 0, .8);
   backdrop-filter: blur(8px);
-  /* border-bottom: 1px solid #d2220e; */
+  border-bottom: 2px solid #d2220e;
   position: fixed;
   top: 0;
   left: 0;
