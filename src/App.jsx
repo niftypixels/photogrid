@@ -48,7 +48,7 @@ function App() {
         <a href={`tel:${phone}`}>{phone}</a>
       </header>
       <h1>{title}</h1>
-      <p className="copy">{copy}</p>
+      <p className="copy" dangerouslySetInnerHTML={{ __html: copy }} />
       <br />
       <PhotoAlbum
         photos={gallery.thumbs}
