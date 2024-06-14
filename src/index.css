@@ -20,9 +20,10 @@ a {
   position: relative;
 }
 
-a::before {
+a:not([href^="tel"])::before {
   content: '';
   background-color: #d2220e;
+  border-radius: 2px;
   position: absolute;
   left: 0;
   bottom: 0;
