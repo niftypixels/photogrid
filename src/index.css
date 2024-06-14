@@ -16,28 +16,12 @@
 a {
   font-weight: 500;
   color: inherit;
-  text-decoration: inherit;
-  position: relative;
-}
-
-a:not([href^="tel"])::before {
-  content: '';
-  background-color: #d2220e;
-  border-radius: 2px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
+  text-decoration: underline #d2220e;
   transition: .2s ease-in-out;
-  z-index: -1;
-}
-
-a:hover::before {
-  height: 100%;
 }
 
 a:hover {
+  background-color: #d2220e;
   color: #fff;
 }
 
@@ -80,6 +64,7 @@ header {
 }
 
 a[href^="tel"] {
+  background: none;;
   color: #ffe573;
   font-size: 2em;
   font-weight: bold;
