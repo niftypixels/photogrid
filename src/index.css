@@ -16,6 +16,7 @@
 a {
   font-weight: 500;
   color: inherit;
+  border-radius: 2px;
   text-decoration: underline #d2220e;
   transition: .2s ease-in-out;
 }
